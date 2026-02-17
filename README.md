@@ -1,11 +1,12 @@
 # Smart Bill Notifier — Frontend
 
-A React dashboard that allows users to manage recurring bills and receive automated WhatsApp reminders powered by a cloud backend scheduler.
+A React dashboard that allows users to manage recurring bills with secure login and automated WhatsApp reminders powered by a cloud backend scheduler.
 
 ---
 
 ## Live Application
 
+Frontend
 https://smart-bill-notifier.vercel.app
 
 Backend API
@@ -15,27 +16,43 @@ https://smart-bill-backend-1.onrender.com
 
 ## Features
 
+• User login authentication
+• Protected dashboard access
 • Add recurring bills
 • Edit and delete bills
-• Automatic next due date handling
-• Real-time bill list updates
-• Cloud connected backend
-• Responsive dashboard UI
+• Automatic next due date calculation
+• Per-user bill isolation
+• Cloud-based WhatsApp reminders
+• Responsive interface
+
+---
+
+## Authentication Behavior
+
+After login, the backend returns a JWT token.
+
+The frontend stores the token in localStorage and attaches it to every API request:
+
+Authorization: Bearer <token>
+
+If the token is missing or invalid → backend rejects the request → user redirected to login.
+
+So the server controls access, not the UI.
 
 ---
 
 ## How It Works
 
-The frontend collects bill information and sends it to the backend API.
+The frontend sends bill actions to the backend API.
 
-All scheduling and reminder logic runs on the server, ensuring reminders work even if the browser is closed.
+All scheduling and reminder logic runs on the server, ensuring reminders work even when the browser is closed.
 
 Frontend responsibilities:
 
-• User interaction
-• Display bill data
-• Trigger API requests
-• Show updates instantly
+• Collect user input
+• Attach authentication token
+• Display user-specific bills
+• React to authorization failures
 
 ---
 
@@ -43,6 +60,7 @@ Frontend responsibilities:
 
 React (Class Components)
 Fetch API
+JWT Authentication
 CSS
 Environment Variables
 Vercel Hosting
@@ -51,7 +69,7 @@ Vercel Hosting
 
 ## Environment Setup
 
-Create `.env` file in project root:
+Create `.env` in project root:
 
 REACT_APP_API=https://smart-bill-backend-1.onrender.com
 
@@ -62,7 +80,7 @@ REACT_APP_API=https://smart-bill-backend-1.onrender.com
 npm install
 npm start
 
-App runs on:
+App runs on
 http://localhost:3000
 
 ---
@@ -76,19 +94,31 @@ npm run build
 ## Design Decision
 
 The frontend is intentionally lightweight and stateless.
-All reminder logic lives in the backend cron scheduler to ensure reliability and continuous execution.
+Authentication and scheduling are fully handled by the backend to ensure reliability and continuous execution.
 
 ---
 
 ## Folder Structure
 
 src/
-components/ → UI components
-App.js → main dashboard logic
-index.js → app entry point
+Login.js
+Register.js
+Dashboard.js
+App.js
+index.js
+
+---
+
+## System Concept
+
+Browser = interface
+Server = authority
+
+Reminders continue even if the user logs out because the scheduler runs independently in the backend.
 
 ---
 
 ## Author
 
 Vamshi K
+

@@ -40,9 +40,10 @@ class Login extends Component {
           <button>Login</button>
         </form>
 
-        <p onClick={this.props.goRegister} style={{cursor:"pointer"}}>
+          <p className="auth-link" onClick={this.props.goRegister}>
           New user? Register
-        </p>
+         </p>
+
       </div>
     )
   }

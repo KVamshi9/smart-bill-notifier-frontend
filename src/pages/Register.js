@@ -41,9 +41,10 @@ class Register extends Component {
           <button>Create Account</button>
         </form>
 
-        <p onClick={this.props.goLogin} style={{cursor:"pointer"}}>
-          Already have account? Login
-        </p>
+        <p className="auth-link" onClick={this.props.goLogin}>
+        Already have account? Login
+      </p>
+
       </div>
     )
   }

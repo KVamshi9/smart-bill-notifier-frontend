@@ -120,7 +120,7 @@ class Dashboard extends Component {
       <div className="container">
         <h1>EMI Reminder Dashboard</h1>
 
-        <button onClick={this.logout}>Logout</button>
+        <button className="logout-btn" onClick={this.logout}>Logout</button>
 
         <form onSubmit={this.handleSubmit} className="form">
           <input name="title" placeholder="Bill Title" value={form.title} onChange={this.handleChange} required/>
